@@ -51,6 +51,7 @@ class NMSV2():
         CAMERA = 0
         MOVIE  = 1
         IMAGE  = 2
+        ZED = 3
         if SRC_FROM == 'camera':
             SRC_FROM = CAMERA
             VIDEO_INPUT = cfg['camera_input']
@@ -60,6 +61,9 @@ class NMSV2():
         elif SRC_FROM == 'image':
             SRC_FROM = IMAGE
             VIDEO_INPUT = cfg['image_input']
+        elif SRC_FROM == 'ZED':
+            SRC_FROM = ZED
+            VIDEO_INPUT = cfg['camera_input']
         """ """
 
         """ """ """ """ """ """ """ """ """ """ """
@@ -184,6 +188,8 @@ class NMSV2():
             from lib.video import VideoReader
         elif SRC_FROM == IMAGE:
             from lib.image import ImageReader as VideoReader
+        elif SRC_FROM == ZED:
+            from lib.zed_stereo_camera import WebcamVideoStream as VideoReader
         video_reader = VideoReader()
 
         if SRC_FROM == IMAGE:
@@ -202,6 +208,8 @@ class NMSV2():
             filepath_prefix = filename
         elif SRC_FROM == CAMERA:
             filepath_prefix = 'frame'
+        elif SRC_FROM == ZED:
+            filepath_prefix = 'zed'
         """ """
 
 

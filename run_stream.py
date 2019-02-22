@@ -59,7 +59,7 @@ def load_config():
             cfg = yaml.load(ymlfile)
     else:
         raise FileNotFoundError(("File not found: config.yml"))
-    cfg.update({'src_from': 'camera'})
+    # cfg.update({'src_from': 'ZED'})
     return cfg
 
 def log_format(debug_mode):
@@ -101,6 +101,7 @@ def main():
         cfg = load_config()
         debug_mode = cfg['debug_mode']
         model_type = cfg['model_type']
+        print("Using camera: %s"%cfg['src_from'])
 
         """
         LOG FORMAT MODE
